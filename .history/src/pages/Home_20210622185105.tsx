@@ -8,6 +8,7 @@ import { Button } from "../components/Button";
 
 import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
+import { useContext } from "react";
 
 export function Home() {
   const history = useHistory();

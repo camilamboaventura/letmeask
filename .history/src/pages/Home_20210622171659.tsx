@@ -7,16 +7,17 @@ import googleIconImg from "../assets/google-icon.svg";
 import { Button } from "../components/Button";
 
 import "../styles/auth.scss";
-import { useAuth } from "../hooks/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../App";
 
 export function Home() {
   const history = useHistory();
 
-  const { user, signInWithGoogle } = useAuth();
+  const { user, signInWithGoogle } = useContext(AuthContext);
 
-  async function handleCreateRoom() {
+  function handleCreateRoom() {
     if (!user) {
-      await signInWithGoogle();
+      signInWithGoogle();
     }
 
     history.push("/rooms/new");
