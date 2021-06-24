@@ -9,7 +9,6 @@ import { Button } from "../components/Button";
 import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
 import { FormEvent } from "react";
-import { database } from "../services/firebase";
 
 export function Home() {
   const history = useHistory();
@@ -27,19 +26,6 @@ export function Home() {
 
   async function handleJoinRoom(event: FormEvent) {
     event.preventDefault();
-
-    if (roomCode.trim() === "") {
-      return;
-    }
-
-    const roomRef = await database.ref(`rooms/${roomCode}`).get(); //verificando se sala digitada realmente existe
-
-    if (!roomRef.exists()) {
-      alert("Room does not exist");
-      return;
-    }
-
-    history.push(`rooms/${roomCode}`);
   }
 
   return (

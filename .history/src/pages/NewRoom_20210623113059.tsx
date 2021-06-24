@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-// import { AuthContext } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
+//import { AuthContext } from "../contexts/AuthContext";
 import { FormEvent } from "react";
-import { useAuth } from "../hooks/useAuth";
 
 import illustrationImg from "../assets/illustration.svg";
 import logoImg from "../assets/logo.svg";
@@ -10,30 +8,14 @@ import logoImg from "../assets/logo.svg";
 import { Button } from "../components/Button";
 
 import "../styles/auth.scss";
-import { database } from "../services/firebase";
 
-//criação de novas salas
 export function NewRoom() {
-  const { user } = useAuth();
-  const history = useHistory();
+  //const { user } = useAuth();
+
   const [newRoom, setNewRoom] = useState("");
   //vai criar a sala
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
-
-    if (newRoom.trim() === "") {
-      return;
-    }
-    //dentro do meu banco de dados vou ter uma separaçao em "rooms"
-    const roomRef = database.ref("rooms");
-    //dentro de rooms eu faço um push - estou jogando uma nova sala em "rooms"
-    const firebaseRoom = await roomRef.push({
-      title: newRoom,
-      authorId: user?.id, //vem com a ? porque no primeiro momento o usuário nao está logado
-    });
-
-    history.push(`/rooms/${firebaseRoom.key}`);
-    //key é a ID de registro gerada pelo firebase quando a sala é criada
   }
 
   return (

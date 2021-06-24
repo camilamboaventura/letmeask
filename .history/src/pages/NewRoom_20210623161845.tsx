@@ -12,7 +12,6 @@ import { Button } from "../components/Button";
 import "../styles/auth.scss";
 import { database } from "../services/firebase";
 
-//criação de novas salas
 export function NewRoom() {
   const { user } = useAuth();
   const history = useHistory();
@@ -33,7 +32,7 @@ export function NewRoom() {
     });
 
     history.push(`/rooms/${firebaseRoom.key}`);
-    //key é a ID de registro gerada pelo firebase quando a sala é criada
+    //key é a ID de registro
   }
 
   return (
