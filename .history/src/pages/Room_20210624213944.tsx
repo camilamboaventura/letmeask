@@ -7,7 +7,6 @@ import { RoomCode } from "../components/RoomCode";
 import { FormEvent, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
-import { useRoom } from "../hooks/useRoom";
 
 type RoomParams = {
   id: string;
@@ -17,9 +16,8 @@ export function Room() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState("");
-  const roomId = params.id;
 
-  const { title, questions } = useRoom(roomId);
+  const roomId = params.id;
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault(); //para n recarregar a tela
